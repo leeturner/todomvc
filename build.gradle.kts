@@ -42,7 +42,8 @@ dependencies {
     implementation("org.webjars.npm:todomvc-common:1.0.5")
     implementation("org.webjars.npm:todomvc-app-css:2.4.1")
 
-
+    // HTMX
+    implementation("org.webjars.npm:github-com-bigskysoftware-htmx:1.9.10")
 }
 
 application {
