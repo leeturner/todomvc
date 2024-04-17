@@ -67,7 +67,7 @@
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
     <footer id="main-footer" class="footer" th:classappend="${totalNumberOfItems == 0?'hidden':''}">
-        <span th:replace="~{active-items-count :: active-items-count}"></span>
+        <span th:replace="~{fragments :: active-items-count}"></span>
         <ul class="filters">
             <li>
                 <a th:href="@{/}"

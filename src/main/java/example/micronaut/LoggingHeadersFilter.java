@@ -17,6 +17,7 @@ class LoggingHeadersFilter implements Ordered {
 
     @RequestFilter
     void filterRequest(HttpRequest<?> request) {
+        LOG.trace("Request {} {}", request.getMethod(), request.getPath());
         HttpHeadersUtil.trace(LOG, request.getHeaders());
     }
 

@@ -7,8 +7,8 @@ import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.micronaut.views.ModelAndView;
 import io.micronaut.views.View;
-import io.micronaut.views.htmx.HtmxRequestHeaders;
-import io.micronaut.views.htmx.HtmxResponseHeaders;
+import io.micronaut.views.htmx.http.HtmxRequestHeaders;
+import io.micronaut.views.htmx.http.HtmxResponseHeaders;
 
 import java.net.URI;
 import java.util.Collections;
@@ -58,14 +58,14 @@ class TodoItemController {
     HttpResponse<?> addNewTodoItem(@Body TodoItemFormData formData, @Nullable HtmxRequestHeaders htmxRequestHeaders) {
         TodoItem item = repository.save(todoItemMapper.toEntity(formData));
         if (htmxRequestHeaders != null) {
-            return HttpResponse.ok(new ModelAndView<>("fragments", Collections.singletonMap(MODEL_ITEM, item)))
+            return HttpResponse.ok(new ModelAndView<>("fragments :: todoItem", Collections.singletonMap(MODEL_ITEM, item)))
                     .header(HtmxResponseHeaders.HX_TRIGGER, "itemAdded");
         }
         return HttpResponse.seeOther(ROOT);
     }
 
     @Get("/active-items-count")
-    @View("active-items-count")
+    @View("fragments :: active-items-count")
     Map<String, Object> htmxActiveItemsAcount(@NonNull HtmxRequestHeaders htmxRequestHeaders) {
         return Collections.singletonMap("numberOfActiveItems", getNumberOfActiveItems());
     }
@@ -88,7 +88,7 @@ class TodoItemController {
                 todoItem.title(),
         !todoItem.completed());
         repository.updateCompletedById(updated.completed(), id);
-        return HttpResponse.ok(new ModelAndView<>("fragments",
+        return HttpResponse.ok(new ModelAndView<>("fragments :: todoItem",
                             Collections.singletonMap(MODEL_ITEM, updated)))
                     .header(HtmxResponseHeaders.HX_TRIGGER, "itemCompletionToggled");
     }

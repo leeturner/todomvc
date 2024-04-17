@@ -1,7 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.micronaut.application") version "4.3.3"
-    id("io.micronaut.aot") version "4.3.3"
+    id("io.micronaut.application") version "4.3.6"
+    id("io.micronaut.aot") version "4.3.6"
 }
 
 version = "0.1"
@@ -9,6 +9,12 @@ group = "example.micronaut"
 
 repositories {
     mavenCentral()
+    maven {
+        setUrl("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+        mavenContent {
+            snapshotsOnly()
+        }
+    }
 }
 
 dependencies {
@@ -36,6 +42,7 @@ dependencies {
     runtimeOnly("com.h2database:h2")
 
     // Views
+    implementation("io.micronaut.views:micronaut-views-htmx")
     implementation("io.micronaut.views:micronaut-views-thymeleaf")
 
     // TODO MVC
