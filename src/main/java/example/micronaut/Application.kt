@@ -1,10 +1,10 @@
-package example.micronaut;
+package example.micronaut
 
-import io.micronaut.runtime.Micronaut;
+import io.micronaut.runtime.Micronaut
 
-public class Application {
-
-    public static void main(String[] args) {
-        Micronaut.run(Application.class, args);
-    }
+object Application {
+  @JvmStatic
+  fun main(args: Array<String>) {
+    Micronaut.run(Application::class.java, *args)
+  }
 }

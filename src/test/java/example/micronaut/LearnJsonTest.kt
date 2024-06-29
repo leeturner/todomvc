@@ -1,19 +1,17 @@
-package example.micronaut;
+package example.micronaut
 
-import io.micronaut.http.client.BlockingHttpClient;
-import io.micronaut.http.client.HttpClient;
-import io.micronaut.http.client.annotation.Client;
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import io.micronaut.http.HttpResponse
+import io.micronaut.http.client.HttpClient
+import io.micronaut.http.client.annotation.Client
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
 @MicronautTest
-class LearnJsonTest {
-
-    @Test
-    void learnJsonAvailable(@Client("/") HttpClient httpClient) {
-        BlockingHttpClient client = httpClient.toBlocking();
-        assertDoesNotThrow(() -> client.exchange("/learn.json"));
-    }
+internal class LearnJsonTest {
+  @Test
+  fun learnJsonAvailable(@Client("/") httpClient: HttpClient) {
+    val client = httpClient.toBlocking()
+    Assertions.assertDoesNotThrow<HttpResponse<Any?>> { client.exchange("/learn.json") }
+  }
 }
