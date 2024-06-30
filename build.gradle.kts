@@ -1,7 +1,4 @@
 plugins {
-//    id("com.github.johnrengelman.shadow") version "8.1.1"
-//    id("io.micronaut.application") version "4.3.3"
-//    id("io.micronaut.aot") version "4.3.3"
     id("org.jetbrains.kotlin.jvm") version "1.9.23"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.9.23"
     id("com.google.devtools.ksp") version "1.9.23-1.0.19"
@@ -13,7 +10,7 @@ plugins {
 version = "0.1"
 group = "example.micronaut"
 
-val kotlinVersion=project.properties.get("kotlinVersion")
+val kotlinVersion= project.properties["kotlinVersion"]
 
 repositories {
     mavenCentral()
@@ -26,7 +23,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     
-//    annotationProcessor("io.micronaut:micronaut-http-validation")
     ksp("io.micronaut:micronaut-http-validation")
 
     compileOnly("io.micronaut:micronaut-http-client")
@@ -35,7 +31,6 @@ dependencies {
 
     // Serialization
     ksp("io.micronaut.serde:micronaut-serde-processor")
-//    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -62,7 +57,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("example.micronaut.Application")
+    mainClass.set("example.micronaut.ApplicationKt")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("21")

@@ -1,10 +1,7 @@
 package example.micronaut
 
-import io.micronaut.runtime.Micronaut
+import io.micronaut.runtime.Micronaut.run
 
-object Application {
-  @JvmStatic
-  fun main(args: Array<String>) {
-    Micronaut.run(Application::class.java, *args)
-  }
+fun main(args: Array<String>) {
+  run(*args)
 }
